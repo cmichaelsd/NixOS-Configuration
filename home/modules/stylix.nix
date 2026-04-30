@@ -36,6 +36,7 @@
 
     targets = {
       kde.enable = true;
+      qt.enable = false;
     };
   };
 }

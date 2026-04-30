@@ -22,7 +22,6 @@
     libreoffice-fresh
     mpv
     feh
-    kdePackages.klassy
 
     #cli enhancements
     lsd
