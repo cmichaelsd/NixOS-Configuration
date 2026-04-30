@@ -6,6 +6,7 @@
         name = "cmichaelsd";
         email = "cmichaelsd@gmail.com";
       };
+      safe.directory = "/etc/nixos";
     };
   };
 }
