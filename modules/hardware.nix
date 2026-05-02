@@ -1,6 +1,9 @@
 { config, ... }: {
   hardware = {
-    bluetooth.enable = true;
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
 
     nvidia = {
       modesetting.enable = true;
@@ -9,6 +12,8 @@
       package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
 
-    bluetooth.powerOnBoot = true;
+    cpu = {
+      amd.updateMicrocode = true;
+    };
   };
 }

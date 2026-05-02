@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-  # dev tools
+    # dev tools
     terraform
     jdk
     kotlin
@@ -9,13 +9,13 @@
     awscli2
     docker-compose
 
-    #editors
+    # editors
     neovim
     jetbrains.idea-oss
     jetbrains.pycharm-oss
     kdePackages.kate
 
-    #gui apps
+    # gui apps
     brave
     vesktop
     protonmail-desktop
@@ -23,8 +23,12 @@
     mpv
     feh
 
-    #cli enhancements
+    # cli enhancements
     lsd
     bat
+
+    # other
+    hunspell
+    hunspellDicts.en_US
   ];
 }

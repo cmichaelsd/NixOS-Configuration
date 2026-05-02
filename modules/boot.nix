@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   boot = {
     loader = {
       systemd-boot = {
@@ -8,5 +8,7 @@
 
       efi.canTouchEfiVariables = true;
     };
+
+    kernelPackages = pkgs.linuxPackages_zen;
   };
 }
