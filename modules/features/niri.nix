@@ -7,7 +7,7 @@
   };
 
   perSystem = { pkgs, lib, ... }: {
-    packages.myNiri = inputs.wrapper-modules.niri.wrap {
+    packages.myNiri = inputs.wrapper-modules.wrappers.niri.wrap {
       inherit pkgs;
       settings = {
         input.keyboard = {
@@ -18,7 +18,7 @@
 
         binds = {
           "Mod+Return".spawn-sh = lib.getExe pkgs.kitty;
-          "Mod+Q".close-window = null;
+          "Mod+Q".close-window = _: {};
         };
       };
     };

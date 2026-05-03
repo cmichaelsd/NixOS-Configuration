@@ -18,7 +18,7 @@
       self.nixosModules.myMachineNix
       self.nixosModules.myMachineDesktop
       self.nixosModules.myMachineHome
-#       self.nixosModules.niri
+      self.nixosModules.niri
     ];
 
 
