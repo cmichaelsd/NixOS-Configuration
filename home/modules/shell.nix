@@ -4,7 +4,7 @@
 
     shellAliases = {
       ls = "lsd";
-      rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#nixos";
+      rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#myMachine";
     };
 
     initExtra = ''

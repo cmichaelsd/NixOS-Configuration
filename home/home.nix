@@ -1,7 +1,7 @@
 { config, pkgs, ... }: {
 
   imports = [
-    ./modules/stylix.nix
+#     ./modules/stylix.nix
     ./modules/packages.nix
     ./modules/terminal.nix
     ./modules/shell.nix
