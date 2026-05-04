@@ -13,7 +13,6 @@
     neovim
     jetbrains.idea-oss
     jetbrains.pycharm-oss
-    kdePackages.kate
 
     # gui apps
     brave
@@ -22,6 +21,7 @@
     libreoffice-fresh
     mpv
     feh
+    foot    
 
     # cli enhancements
     lsd
@@ -30,5 +30,8 @@
     # other
     hunspell
     hunspellDicts.en_US
+
+    # fonts
+    nerd-fonts.jetbrains-mono
   ];
 }

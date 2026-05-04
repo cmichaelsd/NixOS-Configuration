@@ -3,7 +3,7 @@
     services = {
       desktopManager = {
         # Enable the KDE Plasma Desktop Environment.
-        plasma6.enable = true;
+        plasma6.enable = false;
       };
 
       displayManager = {

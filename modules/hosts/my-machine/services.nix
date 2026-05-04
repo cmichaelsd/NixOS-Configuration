@@ -1,5 +1,5 @@
 {self, inputs, ... }: {
-  flake.nixosModules.myMachineServices = { ... }: {
+  flake.nixosModules.myMachineServices = { pkgs, ... }: {
     services = {
       xserver = {
         # Enable the X11 windowing system.
@@ -58,6 +58,17 @@
           "me.timschneeberger.GalaxyBudsClient"
         ];
       };
+
+      power-profiles-daemon.enable = true;
+
+      upower.enable = true;
+
+      gnome.gnome-keyring.enable = true;
+    };
+
+    xdg.portal = {
+      enable = true;
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     };
 
     virtualisation.docker.enable = true;

@@ -8,5 +8,12 @@
       sed -i "s/$(printf '\xee\x9c\x91')/❄/g" "$out"
     ''));
   };
-  programs.kitty.enable = true;
+  programs.foot = {
+    enable = true;
+    settings = {
+      main = {
+        font = "JetBrainsMono Nerd Font";
+      };
+    };
+  };
 }

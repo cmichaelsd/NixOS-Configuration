@@ -12,6 +12,7 @@
       settings = {
         spawn-at-startup = [
           (lib.getExe self'.packages.myNoctalia)
+          (lib.getExe pkgs.lxqt.lxqt-policykit)
         ];
 
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;

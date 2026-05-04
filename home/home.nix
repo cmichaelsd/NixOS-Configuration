@@ -6,6 +6,7 @@
     ./modules/terminal.nix
     ./modules/shell.nix
     ./modules/git.nix
+    ./modules/gtk.nix
   ];
 
   home = {
