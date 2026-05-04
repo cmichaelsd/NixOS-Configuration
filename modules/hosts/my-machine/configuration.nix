@@ -19,6 +19,7 @@
       self.nixosModules.myMachineDesktop
       self.nixosModules.myMachineHome
       self.nixosModules.niri
+      self.nixosModules.noctalia
     ];
 
 
