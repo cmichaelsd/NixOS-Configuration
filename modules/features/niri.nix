@@ -31,6 +31,15 @@
           "Mod+S".spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
           "Mod+Return".spawn-sh = lib.getExe pkgs.foot;
           "Mod+Q".close-window = _: {};
+          "Mod+F".maximize-column = _: {};
+          "Mod+G".fullscreen-window = _: {};
+          "Mod+Shift+F".toggle-window-floating = _: {};
+          "Mod+C".center-column = _: {};
+
+          "Mod+H".focus-column-left = _: {};
+          "Mod+L".focus-column-right = _: {};
+          "Mod+K".focus-window-up = _: {};
+          "Mod+J".focus-window-down = _: {};
 
           "XF86AudioRaiseVolume".spawn-sh = "${pkgs.wireplumber}/bin/wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+";                           
           "XF86AudioLowerVolume".spawn-sh = "${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";                                    
