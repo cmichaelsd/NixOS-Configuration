@@ -6,6 +6,6 @@
       extensions = with pkgs.vscodium-extensions; [
         jnoortheen.nix-ide
       ];
-    }
+    };
   };
 }

@@ -9,7 +9,7 @@
           self.homeModules.shell
           self.homeModules.git
           self.homeModules.terminal
-          self.homeModules.vscode;
+          self.homeModules.vscode
         ];
 
         home = {
