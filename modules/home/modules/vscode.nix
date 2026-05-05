@@ -1,9 +1,9 @@
 { self, inputs, ... }: {
   flake.homeModules.vscode = { pkgs, ... }: {
-    programs.vscode = {
+    programs.vscodium = {
       enable = true;
       package = pkgs.vscodium-fhs;
-      extensions = with pkgs.vscodium-extensions; [
+      profiles.default.extensions = with pkgs.vscode-extensions; [
         jnoortheen.nix-ide
       ];
     };

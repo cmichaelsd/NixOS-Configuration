@@ -1,5 +1,5 @@
 { self, inputs, ... }: {
-  flake.homeModules.pakcages = { pkgs, ... }: {
+  flake.homeModules.packages = { pkgs, ... }: {
     home.packages = with pkgs; [
       # dev tools
       terraform
