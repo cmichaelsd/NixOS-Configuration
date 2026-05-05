@@ -1,0 +1,14 @@
+{ self, inputs, ... }: {
+  flake.homeModules.git = { ... }: {
+    programs.git = {
+      enable = true;
+      settings = {
+        user = {
+          name = "cmichaelsd";
+          email = "cmichaelsd@gmail.com";
+        };
+        safe.directory = "/etc/nixos";
+      };
+    };
+  };
+}
