@@ -2,7 +2,7 @@
   "settings": {
     "settingsVersion": 59,
     "bar": {
-      "barType": "simple",
+      "barType": "floating",
       "position": "top",
       "monitors": [],
       "density": "default",
@@ -263,7 +263,7 @@
       "settingsPanelSideBarCardStyle": false
     },
     "location": {
-      "name": "",
+      "name": "Nam-gu",
       "weatherEnabled": true,
       "weatherShowEffects": true,
       "weatherTaliaMascotAlways": false,
@@ -276,7 +276,7 @@
       "firstDayOfWeek": -1,
       "hideWeatherTimezone": false,
       "hideWeatherCityName": false,
-      "autoLocate": false
+      "autoLocate": true
     },
     "calendar": {
       "cards": [
@@ -351,7 +351,18 @@
       "clipboardWatchTextCommand": "wl-paste --type text --watch cliphist store",
       "clipboardWatchImageCommand": "wl-paste --type image --watch cliphist store",
       "position": "center",
-      "pinnedApps": [],
+      "pinnedApps": [
+        "brave-browser",
+        "idea-oss",
+        "pycharm-oss",
+        "foot",
+        "steam",
+        "vesktop",
+        "me.timschneeberger.GalaxyBudsClient",
+        "com.hypixel.HytaleLauncher",
+        "brave-fnnddiokljlbkmeppnclajginnfbffgb-Default",
+        "proton-mail"
+      ],
       "sortByMostUsed": true,
       "terminalCommand": "alacritty -e",
       "customLaunchPrefixEnabled": false,
@@ -465,7 +476,13 @@
       "size": 1,
       "onlySameOutput": true,
       "monitors": [],
-      "pinnedApps": [],
+      "pinnedApps": [
+        "brave-browser",
+        "steam",
+        "jetbrains-idea",
+        "pycharm-oss",
+        "vesktop"
+      ],
       "colorizeIcons": false,
       "showLauncherIcon": false,
       "launcherPosition": "end",
@@ -672,7 +689,7 @@
     "openedPanel": "",
     "lockScreenActive": false,
     "wallpapers": {
-      "eDP-1": "/nix/store/4a7fczqqh6k0mlbzhh3j0pglhdg3kv5i-noctalia-shell-4.7.6/share/noctalia-shell/Assets/Wallpaper/noctalia.png"
+      "eDP-1": "/etc/nixos/wallpapers/power-lines.png"
     },
     "desktopWidgetsEditMode": false,
     "display": {

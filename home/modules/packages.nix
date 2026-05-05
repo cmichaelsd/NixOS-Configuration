@@ -33,5 +33,8 @@
 
     # fonts
     nerd-fonts.jetbrains-mono
+
+    # icon theme for noctalia
+    nordzy-icon-theme
   ];
 }
