@@ -64,6 +64,13 @@
           }
         ];
 
+        cursor = {
+          xcursor-theme = "Nordzy-cursors";
+          xcursor-size = 24;
+
+          hide-after-inactive-ms = 10000;
+        };
+
         binds = {
           "Mod+S".spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
           "Mod+Return".spawn-sh = lib.getExe pkgs.foot;

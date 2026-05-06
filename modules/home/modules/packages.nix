@@ -38,6 +38,7 @@
 
       # icon theme for noctalia
       nordzy-icon-theme
+      nordzy-cursor-theme
     ];
   };
 }
