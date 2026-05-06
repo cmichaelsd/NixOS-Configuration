@@ -51,6 +51,10 @@
             opacity = 0.85;
           }
 
+          {
+            matches = [{ is-active = true; }];
+            opacity = 0.95;
+          }
         ];
 
         layer-rules = [
