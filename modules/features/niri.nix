@@ -27,11 +27,23 @@
 
         prefer-no-csd = true;
 
-        layout.gaps = 5;
+        layout = {
+          gaps = 10;
+          focus-ring = {
+            active-gradient = _: {
+              props = {
+                from = "#7aa2f7";
+                to = "#bb9af7";
+                angle = 45;
+              };
+            };
+          };
+        };
 
         binds = {
           "Mod+S".spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
           "Mod+Return".spawn-sh = lib.getExe pkgs.foot;
+          "Mod+E".spawn-sh = lib.getExe pkgs.nautilus;
           "Mod+Q".close-window = _: {};
           "Mod+F".maximize-column = _: {};
           "Mod+G".fullscreen-window = _: {};
