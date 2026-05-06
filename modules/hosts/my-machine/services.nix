@@ -1,5 +1,5 @@
 {self, inputs, ... }: {
-  flake.nixosModules.myMachineServices = { pkgs, ... }: {
+  flake.nixosModules.myMachineServices = { pkgs, lib, ... }: {
     services = {
       xserver = {
         enable = false;
@@ -46,7 +46,15 @@
 
     xdg.portal = {
       enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-wlr
+      ];
+      config.niri = {
+        default = lib.mkForce [ "wlr" "gtk" ];
+        "org.freedesktop.impl.portal.ScreenCast" = lib.mkForce [ "wlr" ];
+        "org.freedesktop.impl.portal.Screenshot" = lib.mkForce [ "wlr" ];
+      };
     };
 
     virtualisation.docker.enable = true;

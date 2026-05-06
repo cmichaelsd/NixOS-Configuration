@@ -40,6 +40,11 @@
           };
         };
 
+        window-rule = {
+          geometry-corner-radius = 20;
+          clip-to-geometry = true;
+        };
+
         binds = {
           "Mod+S".spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
           "Mod+Return".spawn-sh = lib.getExe pkgs.foot;
