@@ -249,8 +249,8 @@
   },
   "ui": {
     "fontDefault": "Sans Serif",
-    "fontFixed": "monospace",
-    "fontDefaultScale": 1.03,
+    "fontFixed": "JetBrainsMono Nerd Font Mono",
+    "fontDefaultScale": 1.04,
     "fontFixedScale": 1,
     "tooltipsEnabled": true,
     "scrollbarAlwaysVisible": true,
@@ -300,16 +300,16 @@
     "monitorDirectories": [],
     "enableMultiMonitorDirectories": false,
     "showHiddenFiles": false,
-    "viewMode": "single",
+    "viewMode": "recursive",
     "setWallpaperOnAllMonitors": true,
     "linkLightAndDarkWallpapers": true,
     "fillMode": "crop",
     "fillColor": "#000000",
     "useSolidColor": false,
     "solidColor": "#1a1a2e",
-    "automationEnabled": false,
+    "automationEnabled": true,
     "wallpaperChangeMode": "random",
-    "randomIntervalSec": 300,
+    "randomIntervalSec": 900,
     "transitionDuration": 1500,
     "transitionType": [
       "fade",
@@ -466,7 +466,7 @@
     "disableDesktopWidgets": true
   },
   "dock": {
-    "enabled": true,
+    "enabled": false,
     "position": "bottom",
     "displayMode": "auto_hide",
     "dockType": "floating",
@@ -475,13 +475,7 @@
     "size": 1,
     "onlySameOutput": true,
     "monitors": [],
-    "pinnedApps": [
-      "brave-browser",
-      "steam",
-      "jetbrains-idea",
-      "pycharm-oss",
-      "vesktop"
-    ],
+    "pinnedApps": [],
     "colorizeIcons": false,
     "showLauncherIcon": false,
     "launcherPosition": "end",
@@ -620,13 +614,13 @@
     "backlightDeviceMappings": []
   },
   "colorSchemes": {
-    "useWallpaperColors": false,
+    "useWallpaperColors": true,
     "predefinedScheme": "Tokyo Night",
     "darkMode": true,
     "schedulingMode": "off",
     "manualSunrise": "06:30",
     "manualSunset": "18:30",
-    "generationMethod": "tonal-spot",
+    "generationMethod": "fruit-salad",
     "monitorForColors": "",
     "syncGsettings": true
   },
@@ -660,10 +654,10 @@
     "notifyUpdates": true
   },
   "idle": {
-    "enabled": false,
+    "enabled": true,
     "screenOffTimeout": 600,
     "lockTimeout": 660,
-    "suspendTimeout": 1800,
+    "suspendTimeout": 0,
     "fadeDuration": 5,
     "screenOffCommand": "",
     "lockCommand": "",

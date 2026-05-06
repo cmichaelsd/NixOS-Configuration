@@ -25,6 +25,8 @@
           xkb.layout = "us";
         };
 
+        prefer-no-csd = true;
+
         layout.gaps = 5;
 
         binds = {

@@ -3,6 +3,8 @@
     security = {
       rtkit.enable = true;
 
+      polkit.enable = true;
+
       sudo.extraRules = [
         {
           users = [ "cole" ];

@@ -3,6 +3,7 @@
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;
+      # sharedModules = [ inputs.stylix.homeModules.stylix ];
       users.cole = {
         imports = [
           self.homeModules.packages
@@ -10,6 +11,7 @@
           self.homeModules.git
           self.homeModules.terminal
           self.homeModules.vscode
+          # self.homeModules.stylix
         ];
 
         home = {

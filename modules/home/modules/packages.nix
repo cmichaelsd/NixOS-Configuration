@@ -22,7 +22,8 @@
       libreoffice-fresh
       mpv
       feh
-      foot    
+      foot
+      nautilus  
 
       # cli enhancements
       lsd

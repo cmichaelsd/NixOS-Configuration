@@ -1,10 +1,5 @@
 { self, inputs, lib, ... }: {
   flake.nixosModules.myMachineDesktop = { ... }: {
-    services = {
-      desktopManager.plasma6.enable = false;
-      displayManager.sddm.enable = false;
-    };
-
     programs.regreet = {
       enable = true;
       settings = {

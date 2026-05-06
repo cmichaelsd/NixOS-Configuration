@@ -1,6 +1,6 @@
 { self, inputs, ... }: {
   flake.homeModules.stylix = { pkgs, ... }: {
-    stylix= {
+    stylix = {
       enable = true;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-storm.yaml";
       image = ../../wallpapers/power-lines.png;
@@ -35,10 +35,7 @@
         };
       };
 
-      targets = {
-        kde.enable = true;
-        qt.enable = false;
-      };
+      autoEnable = false;
     };
   };
 }
