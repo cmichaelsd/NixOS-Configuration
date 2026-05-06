@@ -13,7 +13,7 @@
     "contentPadding": 2,
     "fontScale": 1.05,
     "enableExclusionZoneInset": true,
-    "backgroundOpacity": 0.93,
+    "backgroundOpacity": 1,
     "useSeparateOpacity": false,
     "marginVertical": 4,
     "marginHorizontal": 4,
@@ -184,7 +184,7 @@
     "screenOverrides": []
   },
   "general": {
-    "avatarImage": "/home/cole/.face",
+    "avatarImage": "/etc/nixos/face/tree.jpg",
     "dimmerOpacity": 0.2,
     "showScreenCorners": false,
     "forceBlackScreenCorners": false,
@@ -300,7 +300,7 @@
     "monitorDirectories": [],
     "enableMultiMonitorDirectories": false,
     "showHiddenFiles": false,
-    "viewMode": "recursive",
+    "viewMode": "browse",
     "setWallpaperOnAllMonitors": true,
     "linkLightAndDarkWallpapers": true,
     "fillMode": "crop",
