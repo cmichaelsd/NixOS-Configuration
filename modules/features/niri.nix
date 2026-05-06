@@ -40,10 +40,29 @@
           };
         };
 
-        window-rule = {
-          geometry-corner-radius = 20;
-          clip-to-geometry = true;
-        };
+        window-rules = [
+          {
+            geometry-corner-radius = 20;
+            clip-to-geometry = true;
+          }
+
+          {
+            matches = [{ is-active = false; }];
+            opacity = 0.85;
+          }
+
+        ];
+
+        layer-rules = [
+          {
+            matches = [{ namespace = "^noctalia-(background|launcher-overlay|dock)-.*$"; }];
+            background-effect = {
+              blur = true;
+              noise = 0.03;
+              saturation = 1.0;
+            };
+          }
+        ];
 
         binds = {
           "Mod+S".spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
