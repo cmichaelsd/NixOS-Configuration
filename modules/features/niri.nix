@@ -48,12 +48,12 @@
 
           {
             matches = [{ is-active = false; }];
-            opacity = 0.85;
+            opacity = 0.80;
           }
 
           {
             matches = [{ is-active = true; }];
-            opacity = 0.95;
+            opacity = 0.90;
           }
         ];
 
