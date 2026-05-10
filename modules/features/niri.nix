@@ -12,20 +12,32 @@
       settings = {
         environment = {
           QS_ICON_THEME = "Nordzy";
+          XMODIFIERS = "@im=fcitx";
+          QT_IM_MODULE = "fcitx";
+          NIXOS_OZONE_WL = "1";
         };
 
         spawn-at-startup = [
           (lib.getExe self'.packages.myNoctalia)
           (lib.getExe pkgs.lxqt.lxqt-policykit)
+          (lib.getExe pkgs.fcitx5)
         ];
 
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
 
         input.keyboard = {
-          xkb.layout = "us";
+          xkb = {
+            layout = "us";
+          };
+          repeat-rate = 40;
+          repeat-delay = 250;
         };
 
         prefer-no-csd = true;
+
+        debug = {
+          disable-direct-scanout = _: {};
+        };
 
         layout = {
           gaps = 10;
@@ -47,6 +59,11 @@
           }
 
           {
+            matches = [{ app-id = "fcitx"; title = "^Fcitx5 Input Window$"; }];
+            open-floating = true;
+          }
+
+          {
             matches = [{ is-active = false; }];
             opacity = 0.80;
           }
@@ -54,6 +71,7 @@
           {
             matches = [{ is-active = true; }];
             opacity = 0.90;
+            draw-border-with-background = false;
           }
         ];
 
