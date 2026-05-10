@@ -44,8 +44,8 @@
           focus-ring = {
             active-gradient = _: {
               props = {
-                from = "#7aa2f7";
-                to = "#bb9af7";
+                from = "#7aa2f799";
+                to = "#bb9af799";
                 angle = 45;
               };
             };
@@ -107,6 +107,9 @@
           "Mod+L".focus-column-right = _: {};
           "Mod+K".focus-window-up = _: {};
           "Mod+J".focus-window-down = _: {};
+
+          "Mod+Ctrl+K".focus-workspace-up = _: {};
+          "Mod+Ctrl+J".focus-workspace-down = _: {};
 
           "XF86AudioRaiseVolume".spawn-sh = "${pkgs.wireplumber}/bin/wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+";                           
           "XF86AudioLowerVolume".spawn-sh = "${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";                                    
