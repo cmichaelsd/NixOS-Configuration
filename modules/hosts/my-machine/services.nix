@@ -4,6 +4,7 @@
       xserver = {
         enable = false;
         xkb.layout = "us";
+        videoDrivers = [ "nvidia" ];
       };
 
       printing.enable = true;

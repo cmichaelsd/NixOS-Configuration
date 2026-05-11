@@ -1,6 +1,10 @@
 { self, inputs, ... }: {
   flake.nixosModules.myMachineBoot = { pkgs, ... }: {
     boot = {
+      kernelParams = [
+        "acpi_backlight=none"
+      ];
+
       loader = {
         systemd-boot = {
           enable = true;

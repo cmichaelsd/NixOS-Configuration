@@ -21,8 +21,9 @@
       cpu = {
         amd.updateMicrocode = true;
       };
-
     };
+
+    boot.extraModprobeConfig = "options nvidia_wmi_ec_backlight force=Y";
 
     environment.sessionVariables = {
       GBM_BACKEND = "nvidia-drm";

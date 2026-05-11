@@ -3,6 +3,7 @@
     environment.systemPackages = with pkgs; [
       wget
       vim
+      brightnessctl
     ];
 
     programs = {
