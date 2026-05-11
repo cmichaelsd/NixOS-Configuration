@@ -112,7 +112,7 @@
           "Mod+Ctrl+J".focus-workspace-down = _: {};
 
           "Mod+D".spawn-sh = self.mkWhichKeyExe pkgs [
-            { key = "b"; desc = "Brave"; cmd = pkgs.lib.getExe pkgs.brave; }
+            { key = "b"; desc = "Brave"; cmd = pkgs.lib.getExe pkgs.librewolf; }
             { key = "d"; desc = "Vesktop"; cmd = pkgs.lib.getExe pkgs.vesktop; }
             { key = "v"; desc = "VSCodium"; cmd = pkgs.lib.getExe pkgs.vscodium-fhs; }
           ];

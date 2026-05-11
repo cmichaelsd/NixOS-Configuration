@@ -23,8 +23,6 @@
       };
     };
 
-    boot.extraModprobeConfig = "options nvidia_wmi_ec_backlight force=Y";
-
     environment.sessionVariables = {
       GBM_BACKEND = "nvidia-drm";
       __GLX_VENDOR_LIBRARY_NAME = "nvidia";

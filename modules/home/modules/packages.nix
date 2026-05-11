@@ -17,6 +17,7 @@
 
       # gui apps
       brave
+      librewolf
       vesktop
       protonmail-desktop
       libreoffice-fresh
