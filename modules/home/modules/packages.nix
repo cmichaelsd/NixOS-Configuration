@@ -16,15 +16,13 @@
       jetbrains.pycharm-oss
 
       # gui apps
-      brave
-      librewolf
       vesktop
       protonmail-desktop
       libreoffice-fresh
       mpv
       feh
       foot
-      nautilus  
+      nautilus
 
       # cli enhancements
       lsd

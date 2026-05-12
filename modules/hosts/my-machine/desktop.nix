@@ -1,5 +1,7 @@
 { self, inputs, lib, ... }: {
   flake.nixosModules.myMachineDesktop = { ... }: {
+    programs.dconf.enable = true;
+
     programs.regreet = {
       enable = true;
       settings = {

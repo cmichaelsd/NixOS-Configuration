@@ -3,6 +3,7 @@
     boot = {
       kernelParams = [
         "acpi_backlight=native"
+        "nvidia-drm.fbdev=1"
       ];
 
       loader = {

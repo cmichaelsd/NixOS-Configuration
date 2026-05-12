@@ -20,7 +20,7 @@
         spawn-at-startup = [
           (lib.getExe self'.packages.myNoctalia)
           (lib.getExe pkgs.lxqt.lxqt-policykit)
-          (lib.getExe pkgs.fcitx5)
+          "/run/current-system/sw/bin/fcitx5"
         ];
 
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
@@ -34,10 +34,6 @@
         };
 
         prefer-no-csd = true;
-
-        debug = {
-          disable-direct-scanout = _: {};
-        };
 
         layout = {
           gaps = 10;

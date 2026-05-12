@@ -12,6 +12,8 @@
           self.homeModules.terminal
           self.homeModules.vscode
           self.homeModules.fcitx5
+          self.homeModules.librewolf
+          self.homeModules.theme
           # self.homeModules.stylix
         ];
 

@@ -262,7 +262,7 @@
     "settingsPanelSideBarCardStyle": false
   },
   "location": {
-    "name": "Nam-gu",
+    "name": "Jeju-si",
     "weatherEnabled": true,
     "weatherShowEffects": true,
     "weatherTaliaMascotAlways": false,
@@ -275,7 +275,7 @@
     "firstDayOfWeek": -1,
     "hideWeatherTimezone": false,
     "hideWeatherCityName": false,
-    "autoLocate": true
+    "autoLocate": false
   },
   "calendar": {
     "cards": [
