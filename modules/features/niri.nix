@@ -104,6 +104,11 @@
           "Mod+K".focus-window-up = _: {};
           "Mod+J".focus-window-down = _: {};
 
+          "Mod+Shift+H".move-column-left = _: {};
+          "Mod+Shift+L".move-column-right = _: {};
+          "Mod+Shift+K".move-window-up = _: {};
+          "Mod+Shift+J".move-window-down = _: {};
+
           "Mod+Ctrl+K".focus-workspace-up = _: {};
           "Mod+Ctrl+J".focus-workspace-down = _: {};
 
