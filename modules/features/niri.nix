@@ -37,6 +37,13 @@
 
         outputs."eDP-1" = {
           mode = "1920x1200@240.002";
+          position = _: { props = { x = 0; y = 0; }; };
+        };
+
+        outputs."HDMI-A-1" = {
+          mode = "1920x1080@100.000";
+          position = _: { props = { x = -1920; y = 0; }; };
+          focus-at-startup = _: {};
         };
 
         layout = {

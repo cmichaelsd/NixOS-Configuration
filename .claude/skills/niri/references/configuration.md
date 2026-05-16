@@ -116,11 +116,10 @@ input = {
 
 ```nix
 outputs."eDP-1" = {
-  mode = { width = 1920; height = 1080; refresh = 60.0; };
-  # or shorthand string: mode = "1920x1200@240.002";
+  mode = "1920x1200@240.002";          # string form is most reliable
   scale = 1.5;
   transform = { rotation = 0; };       # 0 | 90 | 180 | 270
-  position = { x = 0; y = 0; };
+  position = _: { props = { x = 0; y = 0; }; };
   variable-refresh-rate = "on";        # "off" | "on" | "on-demand"
   focus-at-startup = true;
   backdrop-color = "#001100";
@@ -128,6 +127,18 @@ outputs."eDP-1" = {
 ```
 
 Get the exact connector name with `niri msg --json outputs`.
+
+**KDL property vs child-node gotcha (wrapper-modules quirk):** niri's KDL parser requires `position` to be written with **properties** (`position x=0 y=0`), not child nodes. A plain Nix attrset like `position = { x = 0; y = 0; }` gets emitted by the wrapper-modules library as `position { x 0; y 0 }` (child nodes) and niri rejects it with "property `x` is required". Use the `_: { props = { ... }; }` form shown above to force property emission — the same pattern used for `active-gradient`. This applies anywhere niri's schema demands properties on a node.
+
+**Bare-flag gotcha:** niri has flag-only nodes inside an `output` block — `focus-at-startup`, `off`, `variable-refresh-rate` (when bare) — that are valid KDL only as a bare node name, no value. Writing `focus-at-startup = true` in Nix emits `"focus-at-startup" true` and niri rejects it with "unexpected argument". Use the empty-function form:
+
+```nix
+outputs."HDMI-A-1" = {
+  focus-at-startup = _: {};
+};
+```
+
+Same pattern used for niri actions in `binds` (e.g. `"Mod+Q".close-window = _: {}`). The function returning empty attrs signals "render as bare node with no args/props."
 
 ## Animations
 
