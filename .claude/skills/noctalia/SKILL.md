@@ -1,10 +1,9 @@
-# Noctalia Expertise
-
-You are an expert on Noctalia, a minimal Wayland desktop shell. When invoked, bring full knowledge of Noctalia's IPC, configuration, NixOS integration, and component system to bear on whatever the user needs.
-
+---
+name: noctalia
+description: Expert reference for Noctalia, the user's Wayland desktop shell (bar, dock, launcher, notifications, lock screen, built on quickshell) — covers the wrapper-modules wrap options, IPC commands (launcher, settings, volume, media, brightness, notifications, wallpaper, theme, etc.), bar/layer config, the noctalia.json schema, plugins, and niri layer-rule integration. Use whenever the user is editing /etc/nixos/modules/features/noctalia.nix or noctalia.json, binding a key to a Noctalia IPC call, configuring bar widgets or the launcher, troubleshooting the shell, or asking how to make Noctalia do something — also trigger when they describe panel/shell/launcher/notification behavior without naming Noctalia explicitly.
 ---
 
-## What is Noctalia
+# Noctalia
 
 Noctalia ("quiet by design") is a Wayland desktop shell providing a bar, dock, launcher, notifications, lock screen, and desktop widgets. It runs on top of a Wayland compositor (niri, Hyprland, Sway, etc.) and is built on **noctalia-qs** — a custom fork of Quickshell (Qt6/QML).
 
@@ -17,17 +16,10 @@ The underlying process is `qs` (quickshell). When installed via the NixOS flake 
 
 ## This User's Setup
 
-- **Config file**: `modules/features/noctalia.nix` — defines `packages.myNoctalia` via `wrapper-modules.wrappers.noctalia-shell.wrap`
-- **Settings**: `modules/features/noctalia.json` — JSON, read with `builtins.fromJSON`, `settingsVersion = 59`
-- **IPC invocation**: `${lib.getExe self'.packages.myNoctalia} ipc call <target> <function>` (used in niri keybinds)
-- **Niri keybind**: `"Mod+S".spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle"`
-- **Spawn-at-startup**: `lib.getExe self'.packages.myNoctalia` in niri's `spawn-at-startup`
-- **Color scheme**: Tokyo Night, dark mode, `useWallpaperColors = true`, generation method `fruit-salad`
-- **Bar**: floating, top, always visible, `backgroundOpacity = 0.8`
-
-### Current bar widgets (left → center → right)
-Left: Launcher, Clock, SystemMonitor, ActiveWindow, MediaMini  
-(center and right configured in noctalia.json)
+- **Wrapper module**: `modules/features/noctalia.nix` — defines `packages.myNoctalia` via `wrapper-modules.wrappers.noctalia-shell.wrap`
+- **Settings**: `modules/features/noctalia.json` — JSON, read with `builtins.fromJSON`. Read this file directly when answering questions about current bar widgets, color scheme, opacity, etc. — it is the source of truth and the `settingsVersion` may change.
+- **IPC invocation**: `${lib.getExe self'.packages.myNoctalia} ipc call <target> <function>` (used in niri keybinds and from shell)
+- **Spawn-at-startup**: handled by niri's `spawn-at-startup`
 
 ---
 
@@ -368,7 +360,7 @@ layout.background-color = "transparent";
 
 ## Troubleshooting
 
-- **Noctalia not starting**: Check `pgrep -a fcitx5` — if `.quickshell-wrapped` not in `pgrep` output, spawn-at-startup didn't fire; also check `journalctl --user` for QML errors
+- **Noctalia not starting**: Check `pgrep -a quickshell` — if `.quickshell-wrapped` not in the output, spawn-at-startup didn't fire; also check `journalctl --user` for QML errors
 - **IPC not responding**: `noctalia-shell ipc show` to verify endpoints; ensure `WAYLAND_DISPLAY` is set in the calling shell
 - **GUI settings not persisting**: Using wrapper-modules without `outOfStoreConfig` — config is in the immutable Nix store; add `outOfStoreConfig` to enable mutable config
 - **Settings lost after rebuild**: Same issue as above — without `outOfStoreConfig`, each rebuild overwrites the settings

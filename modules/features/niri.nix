@@ -35,6 +35,10 @@
 
         prefer-no-csd = true;
 
+        outputs."eDP-1" = {
+          mode = "1920x1200@240.002";
+        };
+
         layout = {
           gaps = 10;
           focus-ring = {
