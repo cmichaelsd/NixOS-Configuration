@@ -1,14 +1,19 @@
 { self, inputs, lib, ... }: {
   flake.nixosModules.myMachineDesktop = { pkgs, ... }: let
-    greeterSwayConfig = pkgs.writeText "greeter-sway.conf" ''
-      output eDP-1 disable
-      exec "${lib.getExe pkgs.regreet}; ${pkgs.sway}/bin/swaymsg exit"
+    greeterNiriConfig = pkgs.writeText "greeter-niri.kdl" ''
+      output "eDP-1" {
+          off
+      }
+    '';
+    greeterStart = pkgs.writeShellScript "greeter-start" ''
+      ${lib.getExe pkgs.regreet}
+      ${pkgs.niri}/bin/niri msg action quit -s
     '';
   in {
     programs.dconf.enable = true;
 
     services.greetd.settings.default_session.command = lib.mkForce
-      "${pkgs.sway}/bin/sway --unsupported-gpu --config ${greeterSwayConfig}";
+      "${pkgs.niri}/bin/niri --config ${greeterNiriConfig} -- ${greeterStart}";
 
     programs.regreet = {
       enable = true;

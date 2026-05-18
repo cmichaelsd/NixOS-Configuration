@@ -34,6 +34,7 @@
         };
 
         prefer-no-csd = true;
+        screenshot-path = "~/Pictures/Screenshots/%Y-%m-%d_%H-%M-%S.png";
 
         outputs."eDP-1" = {
           mode = "1920x1200@240.002";
@@ -123,11 +124,20 @@
           "Mod+Ctrl+K".focus-workspace-up = _: {};
           "Mod+Ctrl+J".focus-workspace-down = _: {};
 
+          "Mod+Ctrl+H".focus-monitor-left = _: {};
+          "Mod+Ctrl+L".focus-monitor-right = _: {};
+          "Mod+Ctrl+Shift+H".move-column-to-monitor-left = _: {};
+          "Mod+Ctrl+Shift+L".move-column-to-monitor-right = _: {};
+
           "Mod+D".spawn-sh = self.mkWhichKeyExe pkgs [
             { key = "b"; desc = "LibreWolf"; cmd = pkgs.lib.getExe pkgs.librewolf; }
             { key = "d"; desc = "Vesktop"; cmd = pkgs.lib.getExe pkgs.vesktop; }
             { key = "v"; desc = "VSCodium"; cmd = pkgs.lib.getExe pkgs.vscodium-fhs; }
           ];
+
+          "Mod+Shift+S".screenshot = _: {};
+          "Mod+Ctrl+S".screenshot-screen = _: {};
+          "Mod+Alt+S".screenshot-window = _: {};
 
           "XF86AudioRaiseVolume".spawn-sh = "${pkgs.wireplumber}/bin/wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+";
           "XF86AudioLowerVolume".spawn-sh = "${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";                                    
