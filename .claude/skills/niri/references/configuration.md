@@ -128,6 +128,14 @@ outputs."eDP-1" = {
 
 Get the exact connector name with `niri msg --json outputs`.
 
+**Disabling a monitor** (e.g. laptop screen when docked):
+```nix
+outputs."eDP-1" = {
+  off = _: {};
+};
+```
+This tells niri to leave the output powered off. Useful in greeter configs or keybind scripts that toggle monitors.
+
 **KDL property vs child-node gotcha (wrapper-modules quirk):** niri's KDL parser requires `position` to be written with **properties** (`position x=0 y=0`), not child nodes. A plain Nix attrset like `position = { x = 0; y = 0; }` gets emitted by the wrapper-modules library as `position { x 0; y 0 }` (child nodes) and niri rejects it with "property `x` is required". Use the `_: { props = { ... }; }` form shown above to force property emission — the same pattern used for `active-gradient`. This applies anywhere niri's schema demands properties on a node.
 
 **Bare-flag gotcha:** niri has flag-only nodes inside an `output` block — `focus-at-startup`, `off`, `variable-refresh-rate` (when bare) — that are valid KDL only as a bare node name, no value. Writing `focus-at-startup = true` in Nix emits `"focus-at-startup" true` and niri rejects it with "unexpected argument". Use the empty-function form:

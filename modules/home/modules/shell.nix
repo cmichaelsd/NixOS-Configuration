@@ -5,6 +5,7 @@
 
       shellAliases = {
         ls = "lsd";
+        update = "nix flake update --flake /etc/nixos";
         rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#myMachine";
       };
 

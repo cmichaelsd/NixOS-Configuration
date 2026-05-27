@@ -1,6 +1,8 @@
 { self, inputs, ... }: {
   flake.nixosModules.myMachineHardwareModifications = { config, ... }: {
     hardware = {
+      i2c.enable = true;
+
       bluetooth = {
         enable = true;
         powerOnBoot = true;

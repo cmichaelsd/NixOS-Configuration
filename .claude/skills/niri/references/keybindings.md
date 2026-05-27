@@ -71,12 +71,17 @@ Annotate a bind with extra behavior:
 ## All Actions
 
 `spawn`, `spawn-sh`, `quit`, `close-window`, `maximize-column`, `fullscreen-window`, `toggle-window-floating`, `center-column`,
-`focus-column-left`, `focus-column-right`, `focus-window-up`, `focus-window-down`,
-`move-column-left`, `move-column-right`, `move-window-up`, `move-window-down`,
+`focus-column-left`, `focus-column-right`, `focus-column-or-monitor-left`, `focus-column-or-monitor-right`,
+`focus-window-up`, `focus-window-down`, `focus-window-or-workspace-up`, `focus-window-or-workspace-down`,
+`move-column-left`, `move-column-right`, `move-column-left-or-to-monitor-left`, `move-column-right-or-to-monitor-right`,
+`move-window-up`, `move-window-down`, `move-window-up-or-to-workspace-up`, `move-window-down-or-to-workspace-down`,
+`consume-or-expel-window-left`, `consume-or-expel-window-right`,
 `focus-workspace`, `focus-workspace-down`, `focus-workspace-up`,
 `move-column-to-workspace`, `move-column-to-workspace-down`, `move-column-to-workspace-up`,
+`move-window-to-workspace`, `move-window-to-workspace-down`, `move-window-to-workspace-up`,
 `switch-preset-column-width`, `switch-preset-window-height`, `set-column-width`, `set-window-height`,
 `screenshot`, `screenshot-screen`, `screenshot-window`,
 `toggle-keyboard-shortcuts-inhibit`, `do-screen-transition`, `toggle-window-rule-opacity`,
 `focus-monitor-left/right/up/down`, `move-column-to-monitor-left/right/up/down`,
-`switch-layout`, `show-hotkey-overlay`
+`move-column-to-monitor-with-window-left/right/up/down`,
+`toggle-overview`, `switch-layout`, `show-hotkey-overlay`

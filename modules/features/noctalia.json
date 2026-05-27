@@ -297,7 +297,7 @@
   },
   "wallpaper": {
     "enabled": true,
-    "overviewEnabled": false,
+    "overviewEnabled": true,
     "directory": "/etc/nixos/wallpapers",
     "monitorDirectories": [],
     "enableMultiMonitorDirectories": false,
@@ -700,6 +700,10 @@
         "name": "eDP-1",
         "widgets": [
           {
+            "barWidth": 0.6,
+            "bloomIntensity": 0.5,
+            "customPrimaryColor": "#6750a4",
+            "customSecondaryColor": "#625b71",
             "defaultSettings": {
               "barWidth": 0.6,
               "bloomIntensity": 0.5,
@@ -714,11 +718,19 @@
               "visualizationMode": 3,
               "waveThickness": 1
             },
+            "fadeWhenIdle": false,
             "id": "plugin:fancy-audiovisualizer",
+            "innerDiameter": 0.7,
+            "ringOpacity": 0.8,
+            "rotationSpeed": 0.5,
             "scale": 1,
+            "sensitivity": 1.5,
             "showBackground": true,
-            "x": 860,
-            "y": 500
+            "useCustomColors": false,
+            "visualizationMode": 5,
+            "waveThickness": 1,
+            "x": 648,
+            "y": 336
           },
           {
             "clockColor": "none",
@@ -730,16 +742,16 @@
             "scale": 1,
             "showBackground": false,
             "useCustomFont": false,
-            "x": 1720,
-            "y": 60
+            "x": 1320,
+            "y": 72
           },
           {
             "id": "Weather",
             "roundedCorners": true,
             "scale": 1,
             "showBackground": false,
-            "x": 60,
-            "y": 60
+            "x": 72,
+            "y": 72
           }
         ]
       }

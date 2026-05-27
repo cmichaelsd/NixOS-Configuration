@@ -3,7 +3,7 @@
     users.users.cole = {
       isNormalUser = true;
       description = "Cole";
-      extraGroups = [ "networkmanager" "wheel" "docker" ];
+      extraGroups = [ "networkmanager" "wheel" "docker" "i2c" ];
     };
   };
 }

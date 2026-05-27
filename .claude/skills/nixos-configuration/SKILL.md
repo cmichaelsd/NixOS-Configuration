@@ -28,14 +28,19 @@ This user's NixOS flake lives at `/etc/nixos`. It uses **flake-parts** to compos
     ├── home/
     │   ├── options.nix                    # declares flake.homeModules option
     │   └── modules/
+    │       ├── fcitx5.nix                 # flake.homeModules.fcitx5
     │       ├── git.nix                    # flake.homeModules.git
+    │       ├── librewolf.nix              # flake.homeModules.librewolf
     │       ├── packages.nix               # flake.homeModules.packages
     │       ├── shell.nix                  # flake.homeModules.shell (bash + starship)
+    │       ├── stylix.nix                 # flake.homeModules.stylix
     │       ├── terminal.nix               # flake.homeModules.terminal
+    │       ├── theme.nix                  # flake.homeModules.theme
     │       └── vscode.nix                 # flake.homeModules.vscode
     ├── features/
     │   ├── niri.nix                       # flake.nixosModules.niri + perSystem myNiri
-    │   └── noctalia.nix                   # perSystem myNoctalia
+    │   ├── noctalia.nix                   # perSystem myNoctalia
+    │   └── wlr-which-key.nix             # wlr-which-key submenu config
     └── hosts/my-machine/
         ├── default.nix                    # nixosConfigurations.myMachine entry point
         ├── configuration.nix              # imports all myMachine* modules

@@ -33,11 +33,13 @@
           repeat-delay = 250;
         };
 
+        hotkey-overlay.skip-at-startup = true;
         prefer-no-csd = true;
         screenshot-path = "~/Pictures/Screenshots/%Y-%m-%d_%H-%M-%S.png";
 
         outputs."eDP-1" = {
           mode = "1920x1200@240.002";
+          scale = 1.25;
           position = _: { props = { x = 0; y = 0; }; };
         };
 
@@ -62,7 +64,7 @@
 
         window-rules = [
           {
-            geometry-corner-radius = 20;
+            geometry-corner-radius = 15;
             clip-to-geometry = true;
           }
 
@@ -85,12 +87,16 @@
 
         layer-rules = [
           {
-            matches = [{ namespace = "^noctalia-(background|launcher-overlay|dock)-.*$"; }];
+            matches = [{ namespace = "^noctalia-(launcher-overlay|dock)-.*$"; }];
             background-effect = {
               blur = true;
               noise = 0.03;
               saturation = 1.0;
             };
+          }
+          {
+            matches = [{ namespace = "^noctalia-overview.*$"; }];
+            place-within-backdrop = true;
           }
         ];
 
@@ -142,8 +148,8 @@
           "XF86AudioRaiseVolume".spawn-sh = "${pkgs.wireplumber}/bin/wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+";
           "XF86AudioLowerVolume".spawn-sh = "${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";                                    
           "XF86AudioMute".spawn-sh = "${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";                                          
-          "XF86MonBrightnessUp".spawn-sh = "${lib.getExe pkgs.brightnessctl} set 5%+";                                                              
-          "XF86MonBrightnessDown".spawn-sh = "${lib.getExe pkgs.brightnessctl} set 5%-";   
+          "XF86MonBrightnessUp".spawn-sh = "if [ \"$(niri msg --json focused-output | ${lib.getExe pkgs.jq} -r .name)\" = \"eDP-1\" ]; then ${lib.getExe pkgs.brightnessctl} set 5%+; else ${lib.getExe pkgs.ddcutil} setvcp 10 + 5; fi";
+          "XF86MonBrightnessDown".spawn-sh = "if [ \"$(niri msg --json focused-output | ${lib.getExe pkgs.jq} -r .name)\" = \"eDP-1\" ]; then ${lib.getExe pkgs.brightnessctl} set 5%-; else ${lib.getExe pkgs.ddcutil} setvcp 10 - 5; fi";   
         };
       };
     };

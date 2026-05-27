@@ -3,12 +3,18 @@
     home.packages = with pkgs; [
       # dev tools
       terraform
+      terraform-local
       jdk
       kotlin
       python3
       nodejs
+      bun
       awscli2
       docker-compose
+      jq
+      zip
+      gnumake
+      gh
 
       # editors
       neovim
