@@ -1,5 +1,24 @@
 { self, inputs, lib, ... }: {
-  flake.nixosModules.myMachineDesktop = { ... }: {
+  flake.nixosModules.myMachineDesktop = { pkgs, ... }: let
+    greeterNiriConfig = pkgs.writeText "greeter-niri.kdl" ''
+      hotkey-overlay {
+          skip-at-startup
+      }
+
+      output "eDP-1" {
+          off
+      }
+    '';
+    greeterStart = pkgs.writeShellScript "greeter-start" ''
+      ${lib.getExe pkgs.regreet}
+      ${pkgs.niri}/bin/niri msg action quit -s
+    '';
+  in {
+    programs.dconf.enable = true;
+
+    services.greetd.settings.default_session.command = lib.mkForce
+      "${pkgs.niri}/bin/niri --config ${greeterNiriConfig} -- ${greeterStart}";
+
     programs.regreet = {
       enable = true;
       settings = {

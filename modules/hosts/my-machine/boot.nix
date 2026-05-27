@@ -2,7 +2,7 @@
   flake.nixosModules.myMachineBoot = { pkgs, ... }: {
     boot = {
       kernelParams = [
-        "acpi_backlight=none"
+        "nvidia-drm.fbdev=1"
       ];
 
       loader = {

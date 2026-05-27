@@ -1,6 +1,8 @@
 { self, inputs, ... }: {
   flake.nixosModules.myMachineHardwareModifications = { config, ... }: {
     hardware = {
+      i2c.enable = true;
+
       bluetooth = {
         enable = true;
         powerOnBoot = true;
@@ -8,9 +10,10 @@
 
       nvidia = {
         modesetting.enable = true;
-        open = false;
+        open = true;
         nvidiaSettings = true;
         package = config.boot.kernelPackages.nvidiaPackages.stable;
+        powerManagement.enable = true;
       };
 
       graphics = {
@@ -22,8 +25,6 @@
         amd.updateMicrocode = true;
       };
     };
-
-    boot.extraModprobeConfig = "options nvidia_wmi_ec_backlight force=Y";
 
     environment.sessionVariables = {
       GBM_BACKEND = "nvidia-drm";

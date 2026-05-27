@@ -2,6 +2,11 @@
   flake.nixosModules.myMachineLocale = { pkgs, lib, ... }: {
     time.timeZone = "Asia/Seoul";
 
+    fonts.packages = with pkgs; [
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
+    ];
+
     i18n = {
       defaultLocale = "en_US.UTF-8";
       inputMethod = {

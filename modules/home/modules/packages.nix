@@ -3,12 +3,18 @@
     home.packages = with pkgs; [
       # dev tools
       terraform
+      terraform-local
       jdk
       kotlin
       python3
       nodejs
+      bun
       awscli2
       docker-compose
+      jq
+      zip
+      gnumake
+      gh
 
       # editors
       neovim
@@ -16,14 +22,13 @@
       jetbrains.pycharm-oss
 
       # gui apps
-      brave
       vesktop
       protonmail-desktop
       libreoffice-fresh
       mpv
       feh
       foot
-      nautilus  
+      nautilus
 
       # cli enhancements
       lsd
