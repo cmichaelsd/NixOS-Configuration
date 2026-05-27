@@ -145,6 +145,9 @@
           "Mod+Ctrl+S".screenshot-screen = _: {};
           "Mod+Alt+S".screenshot-window = _: {};
 
+          "Mod+T".spawn-sh = "PST=$(TZ=America/Los_Angeles date +'%a %H:%M %Z') KST=$(TZ=Asia/Seoul date +'%a %H:%M %Z') && ${lib.getExe self'.packages.myNoctalia} ipc call toast send '{\"title\":\"Time Zones\",\"body\":\"'\"$KST  |  $PST\"'\",\"timeout\":3000,\"icon\":\"clock\"}'";
+
+
           "XF86AudioRaiseVolume".spawn-sh = "${pkgs.wireplumber}/bin/wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+";
           "XF86AudioLowerVolume".spawn-sh = "${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";                                    
           "XF86AudioMute".spawn-sh = "${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";                                          
