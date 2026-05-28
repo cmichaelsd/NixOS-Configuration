@@ -66,6 +66,7 @@
           {
             geometry-corner-radius = 15;
             clip-to-geometry = true;
+            draw-border-with-background = false;
           }
 
           {
@@ -81,7 +82,6 @@
           {
             matches = [{ is-active = true; }];
             opacity = 0.90;
-            draw-border-with-background = false;
           }
         ];
 
