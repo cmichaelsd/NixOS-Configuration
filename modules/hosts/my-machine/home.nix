@@ -3,7 +3,6 @@
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;
-      # sharedModules = [ inputs.stylix.homeModules.stylix ];
       users.cole = {
         imports = [
           self.homeModules.packages
@@ -14,7 +13,6 @@
           self.homeModules.fcitx5
           self.homeModules.librewolf
           self.homeModules.theme
-          # self.homeModules.stylix
         ];
 
         home = {
