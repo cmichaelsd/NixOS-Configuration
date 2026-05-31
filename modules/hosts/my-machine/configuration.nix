@@ -12,6 +12,7 @@
       self.nixosModules.myMachineServices
       self.nixosModules.myMachineUsers
       self.nixosModules.myMachinePackages
+      self.nixosModules.myMachineFonts
       self.nixosModules.myMachineNix
       self.nixosModules.myMachineDesktop
       self.nixosModules.myMachineHome

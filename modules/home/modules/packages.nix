@@ -38,11 +38,6 @@
       hunspell
       hunspellDicts.en_US
 
-      # fonts
-      noto-fonts
-      noto-fonts-color-emoji
-      nerd-fonts.jetbrains-mono
-
       # icon theme for noctalia
       nordzy-icon-theme
       nordzy-cursor-theme
