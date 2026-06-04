@@ -6,9 +6,13 @@
       terraform-local
       jdk
       kotlin
+      kotlin-language-server
       python3
+      pyright
       nodejs
       bun
+      typescript
+      typescript-language-server
       awscli2
       docker-compose
       jq
@@ -29,6 +33,7 @@
       feh
       foot
       nautilus
+      obsidian
 
       # cli enhancements
       lsd
