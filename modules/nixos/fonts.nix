@@ -1,5 +1,5 @@
-{ self, inputs, ... }: {
-  flake.nixosModules.myMachineFonts = { pkgs, ... }: {
+{ ... }: {
+  flake.nixosModules.fonts = { pkgs, ... }: {
     fonts.packages = with pkgs; [
       noto-fonts
       noto-fonts-color-emoji

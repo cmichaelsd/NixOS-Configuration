@@ -1,5 +1,5 @@
-{ self, inputs, ... }: {
-  flake.nixosModules.myMachineLocale = { pkgs, lib, ... }: {
+{ ... }: {
+  flake.nixosModules.locale = { pkgs, lib, ... }: {
     time.timeZone = "Asia/Seoul";
 
     fonts.packages = with pkgs; [

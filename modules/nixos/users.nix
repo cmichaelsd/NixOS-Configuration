@@ -1,5 +1,5 @@
-{ self, inputs, ... }: {
-  flake.nixosModules.myMachineUsers = { ... }: {
+{ ... }: {
+  flake.nixosModules.users = { ... }: {
     users.users.cole = {
       isNormalUser = true;
       description = "Cole";

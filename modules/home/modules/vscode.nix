@@ -1,4 +1,4 @@
-{ self, inputs, ... }: {
+{ ... }: {
   flake.homeModules.vscode = { pkgs, ... }: {
     programs.vscodium = {
       enable = true;

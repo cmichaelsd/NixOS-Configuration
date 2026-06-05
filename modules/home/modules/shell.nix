@@ -1,4 +1,4 @@
-{ self, inputs, ... }: {
+{ ... }: {
   flake.homeModules.shell = { ... }: {
     programs.bash = {
       enable = true;

@@ -1,5 +1,5 @@
-{ self, inputs, ... }: {
-  flake.nixosModules.myMachinePackages = { pkgs, ... }: {
+{ ... }: {
+  flake.nixosModules.packages = { pkgs, ... }: {
     environment.systemPackages = with pkgs; [
       wget
       vim

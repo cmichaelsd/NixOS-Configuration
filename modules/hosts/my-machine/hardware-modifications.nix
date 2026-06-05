@@ -1,4 +1,4 @@
-{ self, inputs, ... }: {
+{ ... }: {
   flake.nixosModules.myMachineHardwareModifications = { config, ... }: {
     hardware = {
       i2c.enable = true;
@@ -25,6 +25,8 @@
         amd.updateMicrocode = true;
       };
     };
+
+    services.xserver.videoDrivers = [ "nvidia" ];
 
     environment.sessionVariables = {
       GBM_BACKEND = "nvidia-drm";

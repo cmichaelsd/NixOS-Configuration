@@ -1,10 +1,9 @@
-{self, inputs, ... }: {
-  flake.nixosModules.myMachineServices = { pkgs, lib, ... }: {
+{ ... }: {
+  flake.nixosModules.services = { pkgs, lib, ... }: {
     services = {
       xserver = {
         enable = false;
         xkb.layout = "us";
-        videoDrivers = [ "nvidia" ];
       };
 
       printing.enable = true;

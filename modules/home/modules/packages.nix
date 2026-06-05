@@ -1,4 +1,4 @@
-{ self, inputs, ... }: {
+{ ... }: {
   flake.homeModules.packages = { pkgs, ... }: {
     home.packages = with pkgs; [
       # dev tools
@@ -20,6 +20,9 @@
       gnumake
       gh
       ansible
+      qemu
+      ipxe
+
 
       # editors
       neovim
