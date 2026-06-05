@@ -19,6 +19,7 @@
       zip
       gnumake
       gh
+      ansible
 
       # editors
       neovim
