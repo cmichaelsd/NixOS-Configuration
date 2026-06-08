@@ -38,6 +38,7 @@
       foot
       nautilus
       obsidian
+      umu-launcher
 
       # cli enhancements
       lsd

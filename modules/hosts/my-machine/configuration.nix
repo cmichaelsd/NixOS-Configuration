@@ -20,6 +20,7 @@
       self.nixosModules.desktop
       self.nixosModules.home
       self.nixosModules.niri
+      self.nixosModules.ai
     ];
 
     # This value determines the NixOS release from which the default
