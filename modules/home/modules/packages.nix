@@ -22,6 +22,7 @@
       ansible
       qemu
       ipxe
+      dig
 
 
       # editors
