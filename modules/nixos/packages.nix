@@ -4,6 +4,14 @@
       wget
       vim
       brightnessctl
+
+      # spell checking
+      hunspell
+      hunspellDicts.en_US
+
+      # icon/cursor theme for noctalia
+      nordzy-icon-theme
+      nordzy-cursor-theme
     ];
 
     programs = {

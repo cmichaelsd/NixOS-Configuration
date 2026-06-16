@@ -44,14 +44,6 @@
       # cli enhancements
       lsd
       bat
-
-      # other
-      hunspell
-      hunspellDicts.en_US
-
-      # icon theme for noctalia
-      nordzy-icon-theme
-      nordzy-cursor-theme
     ];
   };
 }

@@ -21,10 +21,6 @@
   in {
     programs.dconf.enable = true;
 
-    # Make the cursor theme available to the greeter (greeter user can't see
-    # home-manager packages), so greetd's niri/regreet match the logged-in cursor.
-    environment.systemPackages = [ pkgs.nordzy-cursor-theme ];
-
     services.greetd.settings.default_session.command = lib.mkForce
       "${pkgs.niri}/bin/niri --config ${greeterNiriConfig} -- ${greeterStart}";
 
