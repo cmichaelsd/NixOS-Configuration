@@ -37,7 +37,6 @@
       mpv
       feh
       foot
-      nautilus
       obsidian
       umu-launcher
 

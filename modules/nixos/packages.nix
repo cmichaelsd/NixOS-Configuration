@@ -4,6 +4,7 @@
       wget
       vim
       brightnessctl
+      nautilus
 
       # spell checking
       hunspell
