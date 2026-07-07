@@ -6,7 +6,20 @@
     };
   };
 
-  perSystem = { pkgs, lib, self', ... }: {
+  perSystem = { pkgs, lib, self', ... }:
+    let
+      # Diagnostic: passive idle observer. It does NOT change any power state —
+      # it only echoes a tagged line every time the session goes idle / wakes,
+      # so we can pin down what keeps waking the Noctalia lock screen.
+      # Read it with:  journalctl --user -t idle-logger
+      idleLogger = pkgs.writeShellScriptBin "idle-logger" ''
+        ${pkgs.swayidle}/bin/swayidle -w \
+          timeout 30   'echo "IDLE   session reached idle"' \
+          resume       'echo "RESUME session woke (activity reset the idle timer)"' \
+          before-sleep 'echo "SLEEP  system is suspending"' \
+          2>&1 | ${pkgs.systemd}/bin/systemd-cat -t idle-logger
+      '';
+    in {
     packages.myNiri = inputs.wrapper-modules.wrappers.niri.wrap {
       inherit pkgs;
       settings = {
@@ -21,6 +34,7 @@
           (lib.getExe self'.packages.myNoctalia)
           (lib.getExe pkgs.lxqt.lxqt-policykit)
           "/run/current-system/sw/bin/fcitx5"
+          (lib.getExe idleLogger)
         ];
 
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
@@ -109,7 +123,10 @@
 
         binds = {
           "Mod+S".spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
-          "Mod+Return".spawn-sh = lib.getExe pkgs.foot;
+          # Default terminal. warp-terminal is a system package (see
+          # modules/nixos/packages.nix); reference the system profile path since
+          # it's unfree and not in the niri wrapper's perSystem pkgs.
+          "Mod+Return".spawn-sh = "/run/current-system/sw/bin/warp-terminal";
           "Mod+E".spawn-sh = lib.getExe pkgs.nautilus;
           "Mod+Q".close-window = _: {};
           "Mod+F".maximize-column = _: {};

@@ -5,6 +5,8 @@
       vim
       brightnessctl
       nautilus
+      warp-terminal # default terminal (Mod+Return in niri); unfree
+      pipewire.jack # provides `pw-jack` wrapper for JACK apps (e.g. qsynth)
 
       # spell checking
       hunspell

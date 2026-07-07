@@ -23,6 +23,8 @@
       qemu
       ipxe
       dig
+      protontricks
+      qsynth
 
 
       # editors

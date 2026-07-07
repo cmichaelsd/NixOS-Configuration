@@ -9,9 +9,14 @@
         dbaeumer.vscode-eslint
         esbenp.prettier-vscode
         enkia.tokyo-night
+        yzhang.markdown-all-in-one
       ];
       profiles.default.userSettings = {
         "workbench.colorTheme" = "Tokyo Night Storm";
+        "[markdown]" = {
+          "editor.defaultFormatter" = "yzhang.markdown-all-in-one";
+          "editor.formatOnSave" = true;
+        };
       };
     };
   };
