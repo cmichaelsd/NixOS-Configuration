@@ -8,7 +8,6 @@
           self.homeModules.packages
           self.homeModules.shell
           self.homeModules.git
-          self.homeModules.terminal
           self.homeModules.vscode
           self.homeModules.fcitx5
           self.homeModules.librewolf

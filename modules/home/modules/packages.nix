@@ -13,6 +13,8 @@
       bun
       typescript
       typescript-language-server
+      rustup
+      gcc
       awscli2
       docker-compose
       jq
@@ -38,7 +40,6 @@
       libreoffice-fresh
       mpv
       feh
-      foot
       obsidian
       umu-launcher
 
