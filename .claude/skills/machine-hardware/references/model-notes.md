@@ -28,7 +28,7 @@ On this box Optimus is off and NVIDIA is the only dGPU — ignore amdgpu-GPU adv
 - **CPU:** Ryzen 9 7845HX — 12C/24T, 64 MB L3, up to ~5.2 GHz boost, family `0x19` model `0x61` (relevant to microcode; config sets `hardware.cpu.amd.updateMicrocode`). ✓ this box (7845HX). *Note: some listings/Micro Center pair the m18 R1 AMD with a 7945HX — this unit is the 7845HX.*
 - **Panel:** this unit is the **18" FHD+ 1920×1200, 480 Hz, 3 ms** ComfortView-Plus / 100% DCI-P3 panel. ✓ this box (sysfs shows 120/240/480 Hz modes on the BOE eDP). A **QHD+ (2560×1600)** panel was the other factory option — not this machine.
 - **Cooling:** "Cryo-tech" — quad-fan, vapor-chamber, Element-31 (gallium-silicone) thermal interface, rear/side exhaust. Expect **loud fans under load**; only one ACPI thermal zone is exposed to Linux (`acpitz`). model.
-- **BIOS:** Insyde **InsydeH2O** (UEFI). This unit is on **1.18.0** (2025-04-16). ✓ this box.
+- **BIOS:** Insyde **InsydeH2O** (UEFI). This unit is on **1.18.0** (2025-04-16). ✓ this box. **⚠️ Not the latest** — Dell's site publishes newer (1.19 Aug 2025 → **1.22.009** Mar 2026); these are **not** mirrored to LVFS/fwupd, so update via **F12 → BIOS Flash Update** from a FAT32 USB (no Windows needed). Downgrades are blocked (one-way). This is the untried firmware lever for the s2idle suspend bug — see quirks-and-fixes.md §Suspend.
 
 ### Ports (Dell spec — model)
 - **1× HDMI 2.1**, **1× mini-DisplayPort** — external video also routes through the NVIDIA GPU (matches the single `HDMI-A-1` connector seen in sysfs).

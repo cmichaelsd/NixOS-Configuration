@@ -85,7 +85,14 @@ Memory: `project_screen_flicker`.
 - Snapshot `/sys/firmware/acpi/interrupts/gpe*` before/after; check `/sys/power/pm_wakeup_irq` (7 = pinctrl_amd/GPIO, 9 = ACPI SCI).
 - Confirm deep-sleep entry via `/sys/kernel/debug/amd_pmc/s0ix_stats`.
 
-**Remaining real options (none applied, user leaning to "just don't suspend"):** (1) a BIOS/firmware update — cleanest for a firmware wake bug, but fwupd isn't installed and there's no S3 to gain; (2) `devmem`-poke the amd_gpio wake register pre-suspend to clear #58/59/61/62 — hacky, may re-arm, risks killing wake-on-keyboard/touchpad if those *are* the pins; (3) the current choice — no auto-suspend, lock+blank only.
+**Remaining real options (none applied, user leaning to "just don't suspend"):** (1) a **BIOS/firmware update** — cleanest for a firmware wake bug (see below — a newer BIOS exists and is UNTRIED); (2) `devmem`-poke the amd_gpio wake register pre-suspend to clear #58/59/61/62 — hacky, may re-arm, risks killing wake-on-keyboard/touchpad if those *are* the pins; (3) the current choice — no auto-suspend, lock+blank only.
+
+**BIOS-update lever — NOT exhausted (checked 2026-07-12):**
+- `services.fwupd.enable = true` was added (`modules/nixos/services.nix`). But **LVFS has no BIOS update** for this machine — `fwupdmgr get-updates` shows `System Firmware` under "no available updates" (only offers an unrelated UEFI **dbx** Secure-Boot revocation update — skip it). Alienware doesn't publish BIOS to LVFS.
+- **Dell's support site DOES have newer BIOS**, several versions past the installed **1.18** (Apr 2025): **1.19.014** (Aug 2025), **1.20.018** (Nov 2025), **1.21.011** (Dec 2025), **1.22.009** (Mar 2026 — latest). This firmware lever is therefore **untried, not dead.**
+- Release notes are generic (security/thermal/audio/stability) — **no explicit "S0i3 spurious wake" fix noted**, so no guarantee it fixes the bounce; but the root cause is firmware, so it's the best remaining shot.
+- **Flashing without Windows** (this box is Linux-only): download the latest `.exe` → FAT32 USB → reboot → **F12 → BIOS Flash Update**. fwupd cannot do it.
+- **Caveats:** downgrades are **blocked** (one-way); flash on **AC** (recall the "won't boot on battery <70%" quirk); settings may reset — re-verify **Optimus disabled** + USB Wake/PowerShare afterward. If a new BIOS fixes the bounce, revisit `noctalia.json suspendTimeout=0` (re-enable real suspend).
 
 **Guard rails already in the tree:** both `boot.nix` and `hardware-modifications.nix` carry explicit "do NOT re-add `acpi_mask_gpe`/USB4 wakeup udev rules" comments. Honor them.
 
