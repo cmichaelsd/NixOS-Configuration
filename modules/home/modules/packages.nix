@@ -39,7 +39,7 @@
       protonmail-desktop
       libreoffice-fresh
       mpv
-      feh
+      loupe # image viewer; fits-to-window, HiDPI-aware, Wayland-native
       obsidian
       umu-launcher
 

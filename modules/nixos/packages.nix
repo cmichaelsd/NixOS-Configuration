@@ -20,6 +20,7 @@
     programs = {
       nix-ld.enable = true;
       steam.enable = true;
+      gamescope.enable = true; # micro-compositor; run games with `gamescope -f -- %command%` for true fullscreen under niri
 
       appimage = {
         enable = true;

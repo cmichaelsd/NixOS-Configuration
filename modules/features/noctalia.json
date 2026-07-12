@@ -3,9 +3,7 @@
   "bar": {
     "barType": "floating",
     "position": "left",
-    "monitors": [
-      "HDMI-A-1"
-    ],
+    "monitors": [],
     "density": "default",
     "showOutline": false,
     "showCapsule": true,
@@ -679,7 +677,7 @@
     "enabled": true,
     "screenOffTimeout": 660,
     "lockTimeout": 600,
-    "suspendTimeout": 1800,
+    "suspendTimeout": 0,
     "fadeDuration": 5,
     "screenOffCommand": "",
     "lockCommand": "",
