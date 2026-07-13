@@ -17,7 +17,7 @@ This is the user's physical laptop. It is a **discrete-GPU-only** gaming laptop 
 |---|---|
 | **Model** | Alienware m18 R1 **AMD** (not the Intel m18 R1) |
 | **Vendor / board** | Alienware / board `0WGV87` |
-| **BIOS** | `1.18.0`, dated 2025-04-16 (`/sys/class/dmi/id/bios_version`) |
+| **BIOS** | `1.23.0`, dated 2026-03-30 (`/sys/class/dmi/id/bios_version`) — flashed up from 1.18.0; expect a black screen on next flash, see quirks §BIOS-flash |
 | **CPU** | AMD **Ryzen 9 7845HX** (Zen 4, 12C/24T, integrated Radeon) |
 | **dGPU** | NVIDIA **GeForce RTX 4070 Laptop** (Ada), 8 GB VRAM |
 | **RAM** | 32 GB (≈31 GiB usable) |

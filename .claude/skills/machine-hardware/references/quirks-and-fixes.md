@@ -85,20 +85,34 @@ Memory: `project_screen_flicker`.
 - Snapshot `/sys/firmware/acpi/interrupts/gpe*` before/after; check `/sys/power/pm_wakeup_irq` (7 = pinctrl_amd/GPIO, 9 = ACPI SCI).
 - Confirm deep-sleep entry via `/sys/kernel/debug/amd_pmc/s0ix_stats`.
 
-**Remaining real options (none applied, user leaning to "just don't suspend"):** (1) a **BIOS/firmware update** — cleanest for a firmware wake bug (see below — a newer BIOS exists and is UNTRIED); (2) `devmem`-poke the amd_gpio wake register pre-suspend to clear #58/59/61/62 — hacky, may re-arm, risks killing wake-on-keyboard/touchpad if those *are* the pins; (3) the current choice — no auto-suspend, lock+blank only.
+**Remaining real options:** (1) a **BIOS/firmware update** — cleanest for a firmware wake bug; **APPLIED 2026-07-13**, flashed to **1.23.0** (see below — bounce-fix outcome not yet re-tested); (2) `devmem`-poke the amd_gpio wake register pre-suspend to clear #58/59/61/62 — hacky, may re-arm, risks killing wake-on-keyboard/touchpad if those *are* the pins; (3) the current choice — no auto-suspend, lock+blank only.
 
-**BIOS-update lever — NOT exhausted (checked 2026-07-12):**
-- `services.fwupd.enable = true` was added (`modules/nixos/services.nix`). But **LVFS has no BIOS update** for this machine — `fwupdmgr get-updates` shows `System Firmware` under "no available updates" (only offers an unrelated UEFI **dbx** Secure-Boot revocation update — skip it). Alienware doesn't publish BIOS to LVFS.
-- **Dell's support site DOES have newer BIOS**, several versions past the installed **1.18** (Apr 2025): **1.19.014** (Aug 2025), **1.20.018** (Nov 2025), **1.21.011** (Dec 2025), **1.22.009** (Mar 2026 — latest). This firmware lever is therefore **untried, not dead.**
-- Release notes are generic (security/thermal/audio/stability) — **no explicit "S0i3 spurious wake" fix noted**, so no guarantee it fixes the bounce; but the root cause is firmware, so it's the best remaining shot.
-- **Flashing without Windows** (this box is Linux-only): download the latest `.exe` → FAT32 USB → reboot → **F12 → BIOS Flash Update**. fwupd cannot do it.
-- **Caveats:** downgrades are **blocked** (one-way); flash on **AC** (recall the "won't boot on battery <70%" quirk); settings may reset — re-verify **Optimus disabled** + USB Wake/PowerShare afterward. If a new BIOS fixes the bounce, revisit `noctalia.json suspendTimeout=0` (re-enable real suspend).
+**BIOS-update lever — APPLIED 2026-07-13 (flashed 1.18 → 1.23.0):**
+- `services.fwupd.enable = true` is in the tree (`modules/nixos/services.nix`), but **LVFS has no BIOS update** for this machine — Alienware doesn't publish BIOS to LVFS, so fwupd can't do it. The flash was done manually from Dell's `.exe` via **F12 → BIOS Flash Update** off a FAT32 USB.
+- Installed BIOS is now **1.23.0** (dated 2026-03-30), past the 1.22.009 that was "latest" when this was researched.
+- **Post-flash gotcha:** the flash resets settings to defaults → **black screen on first boot** (Optimus got re-enabled). Recovery = `Ctrl+Esc` → Restore Defaults → re-disable Optimus. Full procedure in **§BIOS-flash** below.
+- **Bounce-fix outcome: NOT yet re-tested.** Release notes were generic (no explicit "S0i3 spurious wake" fix noted), so it may or may not have fixed the ~13 s s2idle bounce. If retesting: run the §Suspend testing recipe (`rtcwake -m mem -s 30 -d /dev/rtc1`, watch `pm_wakeup_irq`). If the bounce is gone, revisit `noctalia.json suspendTimeout=0` (re-enable real suspend).
+- **Caveats for any future flash:** downgrades are **blocked** (one-way); flash on **AC** (the "won't boot on battery <70%" quirk); settings reset — re-verify **Optimus disabled** + USB Wake/PowerShare afterward.
 
 **Guard rails already in the tree:** both `boot.nix` and `hardware-modifications.nix` carry explicit "do NOT re-add `acpi_mask_gpe`/USB4 wakeup udev rules" comments. Honor them.
 
 **Applying noctalia config:** the wrapper bakes `NOCTALIA_SETTINGS_FILE` into the running `quickshell` env at launch — a `nixos-rebuild switch` does **not** update a running shell. Restart Noctalia (kill the `quickshell` pid, respawn via `niri msg action spawn`) or log out/in. The mutable `~/.config/noctalia/settings.json` is an unused leftover in this mode.
 
 Memory: `project_noctalia_suspend_wake_cycle`, `project_lockscreen_wake_diagnosis`.
+
+---
+
+## §BIOS-flash — black screen after a BIOS update  ✅ RECOVERY KNOWN
+
+**Symptom:** immediately after flashing a new BIOS, the machine **boots to a black screen** and never reaches the OS. Reproducible — it also happened under Ubuntu on the same hardware. Believed to be a **Linux-vs-firmware** issue: Dell/Alienware built this box effectively Windows-only, and a fresh BIOS comes up with settings (notably Optimus **re-enabled** — a flash resets to defaults) that the discrete-only Linux setup can't cope with.
+
+**Recovery procedure (known-good):**
+1. On the black-screen boot, press **`Ctrl+Esc`** to enter the **BIOS recovery menu**.
+2. In that menu, choose **Restore Defaults**, then **Continue**. This clears the offending settings and lets the machine boot past the black screen.
+3. Boot in, then go back into BIOS and **disable Optimus** again (Restore Defaults turns it back on; discrete-only is required — see SKILL.md "Optimus is disabled in BIOS").
+4. If a black screen recurs after this, it is **benign**: either a **one-time long hang** (wait it out) or a **reboot clears it**. Not a re-flash situation.
+
+**Why it matters:** any future BIOS flash will trip this. Don't panic at the post-flash black screen and don't assume a bricked/failed flash — it's the expected Optimus-reset behavior. The `Ctrl+Esc` → Restore Defaults → re-disable Optimus dance is the fix. Ties into the "settings may reset — re-verify Optimus disabled" caveat in the §Suspend BIOS-update lever.
 
 ---
 
