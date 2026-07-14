@@ -5,6 +5,7 @@
       vim
       brightnessctl
       nautilus
+      loupe # image viewer; fits-to-window, HiDPI-aware, Wayland-native
       warp-terminal # default terminal (Mod+Return in niri); unfree
       pipewire.jack # provides `pw-jack` wrapper for JACK apps (e.g. qsynth)
 

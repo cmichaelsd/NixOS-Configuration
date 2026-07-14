@@ -39,9 +39,9 @@
       protonmail-desktop
       libreoffice-fresh
       mpv
-      loupe # image viewer; fits-to-window, HiDPI-aware, Wayland-native
       obsidian
       umu-launcher
+      lutris
 
       # cli enhancements
       lsd
