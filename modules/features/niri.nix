@@ -101,7 +101,10 @@
 
         layer-rules = [
           {
-            matches = [{ namespace = "^noctalia-(launcher-overlay|dock)-.*$"; }];
+            # v5 layer namespaces (native rewrite renamed these): bar is
+            # noctalia-bar-<name>, panels are noctalia-(panel|attached-panel),
+            # plus dock/notification/osd.
+            matches = [{ namespace = "^noctalia-(bar-.*|panel|attached-panel|dock|notification|osd)$"; }];
             background-effect = {
               blur = false;
               noise = 0.03;
@@ -109,7 +112,10 @@
             };
           }
           {
-            matches = [{ namespace = "^noctalia-overview.*$"; }];
+            # v5 renders a dedicated blurred/tinted wallpaper copy on the
+            # noctalia-backdrop surface for the overview backdrop (settings:
+            # backdrop.enabled = true).
+            matches = [{ namespace = "^noctalia-backdrop"; }];
             place-within-backdrop = true;
           }
         ];
@@ -122,7 +128,7 @@
         };
 
         binds = {
-          "Mod+S".spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
+          "Mod+S".spawn-sh = "${lib.getExe self'.packages.myNoctalia} msg panel-toggle launcher";
           # Default terminal. warp-terminal is a system package (see
           # modules/nixos/packages.nix); reference the system profile path since
           # it's unfree and not in the niri wrapper's perSystem pkgs.
@@ -162,7 +168,7 @@
           "Mod+Ctrl+S".screenshot-screen = _: {};
           "Mod+Alt+S".screenshot-window = _: {};
 
-          "Mod+T".spawn-sh = "PST=$(TZ=America/Los_Angeles date +'%a %H:%M %Z') KST=$(TZ=Asia/Seoul date +'%a %H:%M %Z') && ${lib.getExe self'.packages.myNoctalia} ipc call toast send '{\"title\":\"Time Zones\",\"body\":\"'\"$KST  |  $PST\"'\",\"timeout\":3000,\"icon\":\"clock\"}'";
+          "Mod+T".spawn-sh = "PST=$(TZ=America/Los_Angeles date +'%a %H:%M %Z') KST=$(TZ=Asia/Seoul date +'%a %H:%M %Z') && ${lib.getExe self'.packages.myNoctalia} msg notification-show '{\"summary\":\"Time Zones\",\"body\":\"'\"$KST  |  $PST\"'\",\"timeout_ms\":3000,\"icon\":\"clock\"}'";
 
 
           "XF86AudioRaiseVolume".spawn-sh = "${pkgs.wireplumber}/bin/wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+";

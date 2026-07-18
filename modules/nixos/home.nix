@@ -12,6 +12,7 @@
           self.homeModules.fcitx5
           self.homeModules.librewolf
           self.homeModules.theme
+          self.homeModules.noctalia
         ];
 
         home = {
