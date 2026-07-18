@@ -1,5 +1,5 @@
-{ self, inputs, lib, ... }: {
-  flake.nixosModules.myMachineDesktop = { pkgs, ... }: let
+{ self, lib, ... }: {
+  flake.nixosModules.desktop = { pkgs, ... }: let
     greeterNiriConfig = pkgs.writeText "greeter-niri.kdl" ''
       hotkey-overlay {
           skip-at-startup
@@ -7,6 +7,11 @@
 
       output "eDP-1" {
           off
+      }
+
+      cursor {
+          xcursor-theme "Nordzy-cursors"
+          xcursor-size 24
       }
     '';
     greeterStart = pkgs.writeShellScript "greeter-start" ''

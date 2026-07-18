@@ -1,5 +1,5 @@
-{ self, inputs, ... }: {
-  flake.nixosModules.myMachineSecurity = { ... }: {
+{ ... }: {
+  flake.nixosModules.security = { ... }: {
     security = {
       rtkit.enable = true;
 

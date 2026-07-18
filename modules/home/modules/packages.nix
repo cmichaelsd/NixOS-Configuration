@@ -1,4 +1,4 @@
-{ self, inputs, ... }: {
+{ ... }: {
   flake.homeModules.packages = { pkgs, ... }: {
     home.packages = with pkgs; [
       # dev tools
@@ -6,15 +6,28 @@
       terraform-local
       jdk
       kotlin
+      kotlin-language-server
       python3
+      pyright
       nodejs
       bun
+      typescript
+      typescript-language-server
+      rustup
+      gcc
       awscli2
       docker-compose
       jq
       zip
       gnumake
       gh
+      ansible
+      qemu
+      ipxe
+      dig
+      protontricks
+      qsynth
+
 
       # editors
       neovim
@@ -26,24 +39,13 @@
       protonmail-desktop
       libreoffice-fresh
       mpv
-      feh
-      foot
-      nautilus
+      obsidian
+      umu-launcher
+      lutris
 
       # cli enhancements
       lsd
       bat
-
-      # other
-      hunspell
-      hunspellDicts.en_US
-
-      # fonts
-      nerd-fonts.jetbrains-mono
-
-      # icon theme for noctalia
-      nordzy-icon-theme
-      nordzy-cursor-theme
     ];
   };
 }

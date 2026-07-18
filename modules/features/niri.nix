@@ -6,7 +6,20 @@
     };
   };
 
-  perSystem = { pkgs, lib, self', ... }: {
+  perSystem = { pkgs, lib, self', ... }:
+    let
+      # Diagnostic: passive idle observer. It does NOT change any power state —
+      # it only echoes a tagged line every time the session goes idle / wakes,
+      # so we can pin down what keeps waking the Noctalia lock screen.
+      # Read it with:  journalctl --user -t idle-logger
+      idleLogger = pkgs.writeShellScriptBin "idle-logger" ''
+        ${pkgs.swayidle}/bin/swayidle -w \
+          timeout 30   'echo "IDLE   session reached idle"' \
+          resume       'echo "RESUME session woke (activity reset the idle timer)"' \
+          before-sleep 'echo "SLEEP  system is suspending"' \
+          2>&1 | ${pkgs.systemd}/bin/systemd-cat -t idle-logger
+      '';
+    in {
     packages.myNiri = inputs.wrapper-modules.wrappers.niri.wrap {
       inherit pkgs;
       settings = {
@@ -21,6 +34,7 @@
           (lib.getExe self'.packages.myNoctalia)
           (lib.getExe pkgs.lxqt.lxqt-policykit)
           "/run/current-system/sw/bin/fcitx5"
+          (lib.getExe idleLogger)
         ];
 
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
@@ -66,6 +80,7 @@
           {
             geometry-corner-radius = 15;
             clip-to-geometry = true;
+            draw-border-with-background = false;
           }
 
           {
@@ -81,21 +96,26 @@
           {
             matches = [{ is-active = true; }];
             opacity = 0.90;
-            draw-border-with-background = false;
           }
         ];
 
         layer-rules = [
           {
-            matches = [{ namespace = "^noctalia-(launcher-overlay|dock)-.*$"; }];
+            # v5 layer namespaces (native rewrite renamed these): bar is
+            # noctalia-bar-<name>, panels are noctalia-(panel|attached-panel),
+            # plus dock/notification/osd.
+            matches = [{ namespace = "^noctalia-(bar-.*|panel|attached-panel|dock|notification|osd)$"; }];
             background-effect = {
-              blur = true;
+              blur = false;
               noise = 0.03;
               saturation = 1.0;
             };
           }
           {
-            matches = [{ namespace = "^noctalia-overview.*$"; }];
+            # v5 renders a dedicated blurred/tinted wallpaper copy on the
+            # noctalia-backdrop surface for the overview backdrop (settings:
+            # backdrop.enabled = true).
+            matches = [{ namespace = "^noctalia-backdrop"; }];
             place-within-backdrop = true;
           }
         ];
@@ -108,8 +128,11 @@
         };
 
         binds = {
-          "Mod+S".spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
-          "Mod+Return".spawn-sh = lib.getExe pkgs.foot;
+          "Mod+S".spawn-sh = "${lib.getExe self'.packages.myNoctalia} msg panel-toggle launcher";
+          # Default terminal. warp-terminal is a system package (see
+          # modules/nixos/packages.nix); reference the system profile path since
+          # it's unfree and not in the niri wrapper's perSystem pkgs.
+          "Mod+Return".spawn-sh = "/run/current-system/sw/bin/warp-terminal";
           "Mod+E".spawn-sh = lib.getExe pkgs.nautilus;
           "Mod+Q".close-window = _: {};
           "Mod+F".maximize-column = _: {};
@@ -144,6 +167,9 @@
           "Mod+Shift+S".screenshot = _: {};
           "Mod+Ctrl+S".screenshot-screen = _: {};
           "Mod+Alt+S".screenshot-window = _: {};
+
+          "Mod+T".spawn-sh = "PST=$(TZ=America/Los_Angeles date +'%a %H:%M %Z') KST=$(TZ=Asia/Seoul date +'%a %H:%M %Z') && ${lib.getExe self'.packages.myNoctalia} msg notification-show '{\"summary\":\"Time Zones\",\"body\":\"'\"$KST  |  $PST\"'\",\"timeout_ms\":3000,\"icon\":\"clock\"}'";
+
 
           "XF86AudioRaiseVolume".spawn-sh = "${pkgs.wireplumber}/bin/wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+";
           "XF86AudioLowerVolume".spawn-sh = "${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";                                    

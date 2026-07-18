@@ -1,4 +1,4 @@
-{ self, inputs, ... }: {
+{ ... }: {
   flake.homeModules.fcitx5 = { ... }: {
     home.file.".config/fcitx5/profile" = {
       force = true;

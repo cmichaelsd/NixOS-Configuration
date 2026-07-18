@@ -2,22 +2,25 @@
   flake.nixosModules.myMachineConfiguration = { config, pkgs, ... }: {
     imports = [
       inputs.nix-flatpak.nixosModules.nix-flatpak
-      # inputs.stylix.nixosModules.stylix
       inputs.home-manager.nixosModules.home-manager
+      # machine-specific
       self.nixosModules.myMachineHardware
       self.nixosModules.myMachineHardwareModifications
       self.nixosModules.myMachineBoot
-      self.nixosModules.myMachineLocale
       self.nixosModules.myMachineNetworking
-      self.nixosModules.myMachineSecurity
-      self.nixosModules.myMachineServices
-      self.nixosModules.myMachineUsers
-      self.nixosModules.myMachinePackages
-      self.nixosModules.myMachineNix
-      self.nixosModules.myMachineDesktop
-      self.nixosModules.myMachineHome
+
+      # host-agnostic, shared modules
+      self.nixosModules.nix
+      self.nixosModules.locale
+      self.nixosModules.security
+      self.nixosModules.services
+      self.nixosModules.users
+      self.nixosModules.packages
+      self.nixosModules.fonts
+      self.nixosModules.desktop
+      self.nixosModules.home
       self.nixosModules.niri
-      # self.nixosModules.noctalia
+      self.nixosModules.ai
     ];
 
     # This value determines the NixOS release from which the default

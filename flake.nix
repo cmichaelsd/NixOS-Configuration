@@ -10,32 +10,18 @@
 
     wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
 
+    # Noctalia v5 (native rewrite, no longer Quickshell). Do NOT set
+    # inputs.nixpkgs.follows here — following nixpkgs disables the noctalia
+    # binary cache (see nix.nix substituters), forcing a local compile.
+    noctalia.url = "github:noctalia-dev/noctalia";
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.7.0";
-
-    # stylix.url = "github:danth/stylix/master";
   };
-
-#   outputs = { self, nixpkgs, home-manager, nix-flatpak, stylix, ... }: {
-#     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-#       system = "x86_64-linux";
-#       modules = [
-#         ./configuration.nix
-#         stylix.nixosModules.stylix
-#         home-manager.nixosModules.home-manager {
-#           home-manager.useGlobalPkgs = true;
-#           home-manager.useUserPackages = true;
-#           home-manager.sharedModules = [ stylix.homeModules.stylix ];
-#           home-manager.users.cole = import ./home/home.nix;
-#         }
-#         nix-flatpak.nixosModules.nix-flatpak
-#       ];
-#     };
-#   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake
     {inherit inputs;}
