@@ -103,7 +103,7 @@
           {
             matches = [{ namespace = "^noctalia-(launcher-overlay|dock)-.*$"; }];
             background-effect = {
-              blur = true;
+              blur = false;
               noise = 0.03;
               saturation = 1.0;
             };
