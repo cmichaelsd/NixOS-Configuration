@@ -15,7 +15,7 @@
       }
     '';
     greeterStart = pkgs.writeShellScript "greeter-start" ''
-      ${lib.getExe pkgs.regreet}
+      GSK_RENDERER=cairo ${lib.getExe pkgs.regreet}
       ${pkgs.niri}/bin/niri msg action quit -s
     '';
   in {

@@ -89,6 +89,11 @@
           }
 
           {
+            matches = [{ app-id = "^steam_app_1623730$"; }];
+            open-fullscreen = true;
+          }
+
+          {
             matches = [{ is-active = false; }];
             opacity = 0.80;
           }
