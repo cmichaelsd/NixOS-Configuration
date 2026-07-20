@@ -152,8 +152,6 @@
 
           "Mod+Shift+H".move-column-left = _: {};
           "Mod+Shift+L".move-column-right = _: {};
-          "Mod+Shift+K".move-window-up = _: {};
-          "Mod+Shift+J".move-window-down = _: {};
 
           "Mod+Ctrl+K".focus-workspace-up = _: {};
           "Mod+Ctrl+J".focus-workspace-down = _: {};
@@ -162,6 +160,8 @@
           "Mod+Ctrl+L".focus-monitor-right = _: {};
           "Mod+Ctrl+Shift+H".move-column-to-monitor-left = _: {};
           "Mod+Ctrl+Shift+L".move-column-to-monitor-right = _: {};
+          "Mod+Ctrl+Shift+K".move-window-to-workspace-up = _: {};
+          "Mod+Ctrl+Shift+J".move-window-to-workspace-down = _: {};
 
           "Mod+D".spawn-sh = self.mkWhichKeyExe pkgs [
             { key = "b"; desc = "LibreWolf"; cmd = pkgs.lib.getExe pkgs.librewolf; }
