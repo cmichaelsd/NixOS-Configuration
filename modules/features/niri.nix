@@ -180,8 +180,12 @@
           "XF86AudioLowerVolume".spawn-sh = "${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";                                    
           "XF86AudioMute".spawn-sh = "${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";                                          
           "XF86MonBrightnessUp".spawn-sh = "if [ \"$(niri msg --json focused-output | ${lib.getExe pkgs.jq} -r .name)\" = \"eDP-1\" ]; then ${lib.getExe pkgs.brightnessctl} set 5%+; else ${lib.getExe pkgs.ddcutil} setvcp 10 + 5; fi";
-          "XF86MonBrightnessDown".spawn-sh = "if [ \"$(niri msg --json focused-output | ${lib.getExe pkgs.jq} -r .name)\" = \"eDP-1\" ]; then ${lib.getExe pkgs.brightnessctl} set 5%-; else ${lib.getExe pkgs.ddcutil} setvcp 10 - 5; fi";   
+          "XF86MonBrightnessDown".spawn-sh = "if [ \"$(niri msg --json focused-output | ${lib.getExe pkgs.jq} -r .name)\" = \"eDP-1\" ]; then ${lib.getExe pkgs.brightnessctl} set 5%-; else ${lib.getExe pkgs.ddcutil} setvcp 10 - 5; fi";
         };
+
+        extraConfig = ''
+          include optional=true "/home/cole/.config/niri/noctalia.kdl"
+        '';
       };
     };
   };
