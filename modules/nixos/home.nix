@@ -30,13 +30,14 @@
           self.homeModules.fcitx5
           self.homeModules.librewolf
           self.homeModules.theme
+          self.homeModules.noctalia
         ];
 
         programs.git = {
           enable = true;
           settings.user = {
-            name = "CHANGEME";
-            email = "CHANGEME";
+            name = "Cole Michaels";
+            email = "cole.michaels@ns.rocks";
           };
         };
 

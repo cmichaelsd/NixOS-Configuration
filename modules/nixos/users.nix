@@ -8,11 +8,11 @@
 
     # Temporary. To tear down: drop this block and the users.work entry in
     # modules/nixos/home.nix, rebuild, then `sudo rm -rf /home/work`.
-    # Deliberately not in wheel — see also modules/nixos/security.nix.
+    # In wheel for sudo access; NOPASSWD sudo stays cole-only (see modules/nixos/security.nix).
     users.users.work = {
       isNormalUser = true;
       description = "Work";
-      extraGroups = [ "networkmanager" ];
+      extraGroups = [ "networkmanager" "wheel" "docker" ];
     };
   };
 }

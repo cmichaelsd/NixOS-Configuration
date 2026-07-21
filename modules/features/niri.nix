@@ -184,7 +184,7 @@
         };
 
         extraConfig = ''
-          include optional=true "/home/cole/.config/niri/noctalia.kdl"
+          include optional=true "~/.config/niri/noctalia.kdl"
         '';
       };
     };

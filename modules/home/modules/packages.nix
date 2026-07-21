@@ -42,6 +42,8 @@
       obsidian
       umu-launcher
       lutris
+      slack # work
+      openssl # work
 
       # cli enhancements
       lsd

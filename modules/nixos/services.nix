@@ -1,6 +1,18 @@
 { ... }: {
   flake.nixosModules.services = { pkgs, lib, ... }: {
     services = {
+
+      envfs = {
+        enable = true;
+        # envfs resolves /bin/<name> against the caller's $PATH, else a fixed
+        # fallback path that by default only has `env` + `sh`. Add `bash` so
+        # /bin/bash always exists even for callers without bash in PATH
+        # (systemd units, #!/bin/bash shebangs in stripped environments).
+        extraFallbackPathCommands = ''
+          ln -s ${pkgs.bashInteractive}/bin/bash $out/bash
+        '';
+      };
+
       xserver = {
         enable = false;
         xkb.layout = "us";
