@@ -26,15 +26,15 @@
       ipxe
       dig
       protontricks
-      qsynth
-
 
       # editors
       neovim
       jetbrains.idea-oss
       jetbrains.pycharm-oss
+      zed-editor
 
       # gui apps
+      qsynth
       vesktop
       protonmail-desktop
       libreoffice-fresh
@@ -42,8 +42,6 @@
       obsidian
       umu-launcher
       lutris
-      slack # work
-      openssl # work
 
       # cli enhancements
       lsd

@@ -6,7 +6,7 @@
       }
 
       output "eDP-1" {
-          off
+          focus-at-startup
       }
 
       cursor {

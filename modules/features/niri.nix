@@ -166,7 +166,7 @@
           "Mod+D".spawn-sh = self.mkWhichKeyExe pkgs [
             { key = "b"; desc = "LibreWolf"; cmd = pkgs.lib.getExe pkgs.librewolf; }
             { key = "d"; desc = "Vesktop"; cmd = pkgs.lib.getExe pkgs.vesktop; }
-            { key = "v"; desc = "VSCodium"; cmd = pkgs.lib.getExe pkgs.vscodium-fhs; }
+            { key = "z"; desc = "Zed"; cmd = pkgs.lib.getExe pkgs.zed-editor; }
           ];
 
           "Mod+Shift+S".screenshot = _: {};
