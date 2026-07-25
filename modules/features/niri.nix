@@ -89,6 +89,11 @@
           }
 
           {
+            matches = [{ app-id = "^steam_app_1623730$"; }];
+            open-fullscreen = true;
+          }
+
+          {
             matches = [{ is-active = false; }];
             opacity = 0.80;
           }
@@ -147,8 +152,6 @@
 
           "Mod+Shift+H".move-column-left = _: {};
           "Mod+Shift+L".move-column-right = _: {};
-          "Mod+Shift+K".move-window-up = _: {};
-          "Mod+Shift+J".move-window-down = _: {};
 
           "Mod+Ctrl+K".focus-workspace-up = _: {};
           "Mod+Ctrl+J".focus-workspace-down = _: {};
@@ -157,11 +160,13 @@
           "Mod+Ctrl+L".focus-monitor-right = _: {};
           "Mod+Ctrl+Shift+H".move-column-to-monitor-left = _: {};
           "Mod+Ctrl+Shift+L".move-column-to-monitor-right = _: {};
+          "Mod+Ctrl+Shift+K".move-window-to-workspace-up = _: {};
+          "Mod+Ctrl+Shift+J".move-window-to-workspace-down = _: {};
 
           "Mod+D".spawn-sh = self.mkWhichKeyExe pkgs [
             { key = "b"; desc = "LibreWolf"; cmd = pkgs.lib.getExe pkgs.librewolf; }
             { key = "d"; desc = "Vesktop"; cmd = pkgs.lib.getExe pkgs.vesktop; }
-            { key = "v"; desc = "VSCodium"; cmd = pkgs.lib.getExe pkgs.vscodium-fhs; }
+            { key = "z"; desc = "Zed"; cmd = pkgs.lib.getExe pkgs.zed-editor; }
           ];
 
           "Mod+Shift+S".screenshot = _: {};
@@ -175,8 +180,12 @@
           "XF86AudioLowerVolume".spawn-sh = "${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";                                    
           "XF86AudioMute".spawn-sh = "${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";                                          
           "XF86MonBrightnessUp".spawn-sh = "if [ \"$(niri msg --json focused-output | ${lib.getExe pkgs.jq} -r .name)\" = \"eDP-1\" ]; then ${lib.getExe pkgs.brightnessctl} set 5%+; else ${lib.getExe pkgs.ddcutil} setvcp 10 + 5; fi";
-          "XF86MonBrightnessDown".spawn-sh = "if [ \"$(niri msg --json focused-output | ${lib.getExe pkgs.jq} -r .name)\" = \"eDP-1\" ]; then ${lib.getExe pkgs.brightnessctl} set 5%-; else ${lib.getExe pkgs.ddcutil} setvcp 10 - 5; fi";   
+          "XF86MonBrightnessDown".spawn-sh = "if [ \"$(niri msg --json focused-output | ${lib.getExe pkgs.jq} -r .name)\" = \"eDP-1\" ]; then ${lib.getExe pkgs.brightnessctl} set 5%-; else ${lib.getExe pkgs.ddcutil} setvcp 10 - 5; fi";
         };
+
+        extraConfig = ''
+          include optional=true "~/.config/niri/noctalia.kdl"
+        '';
       };
     };
   };

@@ -152,10 +152,10 @@ widget_order = [ "desktop-widget-0000000000000001", "desktop-widget-000000000000
         visualization_mode = "all"
 
     [desktop_widgets.widget.desktop-widget-0000000000000003]
-    box_height = 0.0
-    box_width = 0.0
-    cx = 1362.0
-    cy = 145.70001220703125
+    box_height = 80.0
+    box_width = 240.0
+    cx = 1342.0
+    cy = 149.20001220703125
     enabled = true
     output = "eDP-1"
     rotation = 0.0
@@ -598,7 +598,7 @@ source = "wallpaper"
 wallpaper_scheme = "m3-fruit-salad"
 
     [theme.templates]
-    builtin_ids = []
+    builtin_ids = [ "niri" ]
     community_ids = []
     enable_builtin_templates = true
     enable_community_templates = true
@@ -618,7 +618,7 @@ transition_on_startup = false
 
     [wallpaper.automation]
     enabled = true
-    interval_seconds = 300
+    interval_seconds = 900
     order = "random"
     recursive = true
 
